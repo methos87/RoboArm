@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+     
+<robot
+  name="robot_assembly">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="7.16570679801176E-10 0.00116092156507622 2.8893545031334E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.0324100192967721" />
+      <inertia
+        ixx="2.68587605210783E-05"
+        ixy="-4.84597989563569E-14"
+        ixz="-3.40425204588481E-13"
+        iyy="5.34932089470888E-05"
+        iyz="-5.34738719597888E-10"
+        izz="2.68551853927962E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robo_arm)/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="orange">
+        <color
+          rgba="0.90 0.35 0.117 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robo_arm)/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Link_1">
+    <inertial>
+      <origin
+        xyz="-0.0076360494909025 0.00173746113523518 0.0423898735296237"
+        rpy="0 0 0" />
+      <mass
+        value="0.190717117623996" />
+      <inertia
+        ixx="0.00015099352493845"
+        ixy="-1.84583823946254E-09"
+        ixz="-4.84370294611225E-08"
+        iyy="0.000124524225271564"
+        iyz="2.72900596568772E-06"
+        izz="0.00016196923748443" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robo_arm)/meshes/Link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.90 0.35 0.117 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robo_arm)/meshes/Link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint_1"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 -3.1319" />
+    <parent
+      link="base_link" />
+    <child
+      link="Link_1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="10"
+      velocity="50" />
+  </joint>
+  <link
+    name="Link_2">
+    <inertial>
+      <origin
+        xyz="1.5639E-05 0.00028327 -0.082259"
+        rpy="0 0 0" />
+      <mass
+        value="0.084639" />
+      <inertia
+        ixx="0.00014025"
+        ixy="-4.6225E-12"
+        ixz="-3.076E-07"
+        iyy="0.00012793"
+        iyz="1.6402E-07"
+        izz="3.0857E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robo_arm)/meshes/Link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.90 0.35 0.117 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robo_arm)/meshes/Link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint_2"
+    type="revolute">
+    <origin
+      xyz="0 0 0.071305"
+      rpy="3.1416 -0.64542 1.5708" />
+    <parent
+      link="Link_1" />
+    <child
+      link="Link_2" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.65"
+      upper="0.35"
+      effort="10"
+      velocity="50" />
+  </joint>
+  <link
+    name="Link_3">
+    <inertial>
+      <origin
+        xyz="1.56358976851345E-05 -0.000283205718507318 -0.0822589976475606"
+        rpy="0 0 0" />
+      <mass
+        value="0.0846391903579548" />
+      <inertia
+        ixx="0.000140247302733448"
+        ixy="-4.69358368842248E-12"
+        ixz="-3.07601656051575E-07"
+        iyy="0.000127934879343709"
+        iyz="-1.64072771614451E-07"
+        izz="3.08569655735298E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robo_arm)/meshes/Link_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.90 0.35 0.117 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robo_arm)/meshes/Link_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint_3"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.12503"
+      rpy="0 1.5181 -3.1416" />
+    <parent
+      link="Link_2" />
+    <child
+      link="Link_3" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="0.14"
+      effort="10"
+      velocity="50" />
+  </joint>
+  <link
+    name="Link_4">
+    <inertial>
+      <origin
+        xyz="-0.000290289833333423 0.0355291858374829 0.00215430200212582"
+        rpy="0 0 0" />
+      <mass
+        value="0.0395556566949035" />
+      <inertia
+        ixx="2.27747448686024E-05"
+        ixy="-1.15013948411467E-07"
+        ixz="-7.6137139609455E-10"
+        iyy="1.92306725633858E-05"
+        iyz="-3.31159527434926E-07"
+        izz="3.22545102910992E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robo_arm)/meshes/Link_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.90 0.35 0.117 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robo_arm)/meshes/Link_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint_4"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.12503"
+      rpy="-0.88402 0 1.5708" />
+    <parent
+      link="Link_3" />
+    <child
+      link="Link_4" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-2.3"
+      upper="1"
+      effort="10"
+      velocity="50" />
+  </joint>
+  <link
+    name="End_Effector">
+    <inertial>
+      <origin
+        xyz="-0.0410338250877696 0.00230286861801432 0.00425320117288218"
+        rpy="0 0 0" />
+      <mass
+        value="0.0486239972257278" />
+      <inertia
+        ixx="8.01424949641006E-06"
+        ixy="2.26577983146827E-07"
+        ixz="4.03073122467701E-07"
+        iyy="1.72794175621324E-05"
+        iyz="2.87107880228718E-07"
+        izz="1.26363118173937E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robo_arm)/meshes/End_Effector.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robo_arm)/meshes/End_Effector.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint_5"
+    type="revolute">
+    <origin
+      xyz="-0.0002 0.059362 -0.0026"
+      rpy="-1.6304 0 -1.5708" />
+    <parent
+      link="Link_4" />
+    <child
+      link="End_Effector" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="0"
+      effort="10"
+      velocity="50" />
+  </joint>
+</robot>

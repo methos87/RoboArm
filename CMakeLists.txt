@@ -12,6 +12,11 @@ find_package(rclcpp REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
 
+install(
+  DIRECTORY config include launch meshes rviz src urdf worlds
+  DESTINATION share/${PROJECT_NAME})
+  
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
