@@ -17,7 +17,7 @@ def generate_launch_description():
 
     # Process the URDF file
     pkg_path = os.path.join(get_package_share_directory('robo_arm'))
-    xacro_file = os.path.join(pkg_path,'urdf','robot_assembly.urdf')
+    xacro_file = os.path.join(pkg_path,'urdf','robot_assembly(gazebo).xacro')
     robot_description_config = xacro.process_file(xacro_file)
     
     # Create a robot_state_publisher node
@@ -29,6 +29,20 @@ def generate_launch_description():
         parameters=[params]
     )
 
+    # Launch a joint_state_publisher_gui node
+    node_joint_state_publisher_gui = Node(
+        package='joint_state_publisher_gui',
+        executable='joint_state_publisher_gui',
+        output='screen'
+    )
+
+    # Launch rviz2
+    node_rviz2 = Node(
+        package="rviz2",
+        namespace="",
+        executable="rviz2",
+        name="rviz2"
+    )
 
     # Launch!
     return LaunchDescription([
@@ -37,5 +51,10 @@ def generate_launch_description():
             default_value='false',
             description='Use sim time if true'),
 
-        node_robot_state_publisher
+        node_robot_state_publisher,
+
+        node_rviz2,
+
+        node_joint_state_publisher_gui
+
     ])
