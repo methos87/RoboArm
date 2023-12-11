@@ -9,7 +9,8 @@ Stephen Brawner (brawner@gmail.com)
     <xacro:property name="width" value="0.1" />
     <xacro:property name="height" value="2" />
     <xacro:property name="axle_offset" value="0.05" />
-    <xacro:property name="damp" value="0.7" />
+    <xacro:property name="damping" value="0.5" />
+    <xacro:property name="friciton" value="100" />
 
     <!-- Materials -->
     <material name="white">
@@ -75,6 +76,7 @@ Stephen Brawner (brawner@gmail.com)
         <child link="Link_1" />
         <axis xyz="0 0 1" />
         <limit lower="-1.57" upper="1.57" effort="10" velocity="50" />
+        <dynamics damping="${damping}" friction="${friciton}"/>
     </joint>
 
     <link name="Link_1">
@@ -116,6 +118,7 @@ Stephen Brawner (brawner@gmail.com)
         <child link="Link_2" />
         <axis xyz="0 1 0" />
         <limit lower="-1.65" upper="0.35" effort="10" velocity="50" />
+        <dynamics damping="${damping}" friction="${friciton}"/>
     </joint>
 
     <link name="Link_2">
@@ -156,6 +159,7 @@ Stephen Brawner (brawner@gmail.com)
         <child link="Link_3" />
         <axis xyz="0 1 0" />
         <limit lower="-3.14" upper="0.14" effort="10" velocity="50" />
+        <dynamics damping="${damping}" friction="${friciton}"/>
     </joint>
 
     <link name="Link_3">
@@ -197,6 +201,7 @@ Stephen Brawner (brawner@gmail.com)
         <child link="Link_4" />
         <axis xyz="1 0 0" />
         <limit lower="-2.3" upper="1" effort="10" velocity="50" />
+        <dynamics damping="${damping}" friction="${friciton}"/>
     </joint>
 
     <link name="Link_4">
@@ -235,6 +240,7 @@ Stephen Brawner (brawner@gmail.com)
         <child link="End_Effector" />
         <axis xyz="1 0 0" />
         <limit lower="-3.14" upper="0" effort="10" velocity="50" />
+        <dynamics damping="${damping}" friction="${friciton}"/>
     </joint>
 
     <link name="End_Effector">
@@ -266,7 +272,7 @@ Stephen Brawner (brawner@gmail.com)
     </gazebo>
 
     <!-- Transmission elements -->
-    
+    <!--
     <transmission name="trans_Joint_1">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="Joint_1">
@@ -318,15 +324,65 @@ Stephen Brawner (brawner@gmail.com)
         </actuator>
     </transmission>
 
+    -->
+
     <gazebo>
-        <pluging name="gazebo_ros_joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+        <plugin name="gazebo_ros_joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
             <update_rate>20</update_rate>
             <joint_name>Joint_1</joint_name>
             <joint_name>Joint_2</joint_name>
             <joint_name>Joint_3</joint_name>
             <joint_name>Joint_4</joint_name>
             <joint_name>Joint_5</joint_name>
-        </pluging>
+        </plugin>
     </gazebo>
     
+
+    <!-- ros2 topic pub -1 /set_joint_trajectory trajectory_msgs/msg/JointTrajectory  '{header: {frame_id: world}, joint_names: [Joint_1, Joint_2, Joint_3,_Joint_4, Joint_5], points: [  {positions: {-0.4, 0.7, 0.5, 1.2, 0.5}} ]}' -->
+    <gazebo>
+        <plugin name="gazebo_ros_joint_pose_trajectory"
+            filename="libgazebo_ros_joint_pose_trajectory.so">
+            <update_rate>2</update_rate>
+        </plugin>
+    </gazebo>
+
+    <joint name="camera_optical_joint" type="fixed">
+        <origin xyz="-0.05 0.05 0" rpy="1.57 0 -3.14159" />
+        <parent link="End_Effector" />
+        <child link="camera_link_optical" />
+        <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="camera_link_optical"></link>
+
+    <gazebo reference="camera_link_optical">
+        <sensor type="depth" name="my_cam">
+            <update_rate>20</update_rate>
+            <visualize>true</visualize>
+            <camera name="cam">
+                <horizontal_fov>1.3962634</horizontal_fov>
+                <image>
+                    <width>640</width>
+                    <height>480</height>
+                    <format>R8B8G8</format>
+                </image>
+                <clip>
+                    <near>0.02</near>
+                    <far>300</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.007</stddev>
+                </noise>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <frame_name>camera_link_optical</frame_name>
+                <min_depth>0.1</min_depth>
+                <max_depth>500</max_depth>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+
 </robot>

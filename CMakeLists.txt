@@ -15,7 +15,8 @@ find_package(tf2_ros REQUIRED)
 
 install(
   DIRECTORY config include launch meshes rviz src urdf worlds
-  DESTINATION share/${PROJECT_NAME})
+  DESTINATION share/${PROJECT_NAME}
+)
   
 
 if(BUILD_TESTING)

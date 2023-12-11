@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+
     <!-- ROS CONTROL -->
 
     <gazebo>
@@ -13,5 +14,7 @@
             </robotSimType>
         </plugin>
     </gazebo>
+
+
     
 </robot>
