@@ -1,0 +1,31 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: robo_arm
+    relative_path: urdf/robot_assembly(moveit).urdf
+  srdf:
+    relative_path: config/robo_arm_config.srdf
+  package_settings:
+    author_name: novadroids
+    author_email: novadroids@etik.com
+    generated_timestamp: 1705790187
+  control_xacro:
+    command:
+     - position
+      - velocity
+      - effort
+    state:
+      - position
+      - velocity
+      - effort
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+      - velocity
+      - effort
+    state:
+      - position
+      - velocity
+      - effort

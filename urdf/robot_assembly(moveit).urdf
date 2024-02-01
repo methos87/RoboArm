@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
-     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
-     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-     
-<robot name="robot_assembly">
-    
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot name="robo_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Constants for robot dimensions-->
+    <property name="width" value="0.1" />
+    <property name="height" value="2" />
+    <property name="axle_offset" value="0.05" />
+    <property name="damping" value="0.5" />
+    <property name="friciton" value="100" />
+
     <!-- Materials -->
     <material name="white">
         <color rgba="1 1 1 1" />
@@ -18,10 +22,7 @@
         <color rgba="0 0 0 1" />
     </material>
 
-
-
     <!-- WORLD-->
-
     <link name="world">
     </link>
     <joint name="joint_world" type="fixed">
@@ -30,7 +31,6 @@
     </joint>
 
     <!-- BASE LINK -->
-
     <link name="base_link">
 
         <inertial>
@@ -44,7 +44,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="find://$(find robo_arm)/meshes/base_link.STL" />
+                <mesh filename="package://robo_arm/meshes/base_link.STL" />
             </geometry>
             <material name="orange" />
         </visual>
@@ -52,21 +52,21 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="find://$(find robo_arm)/meshes/base_link.STL" />
+                <mesh filename="package://robo_arm/meshes/base_link.STL" />
             </geometry>
         </collision>
 
     </link>
 
-
     <!-- JOINT 1 -->
-
     <joint name="Joint_1" type="revolute">
+        <!-- <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-1.47" soft_upper_limit="1.47" /> -->
         <origin xyz="0 0 0" rpy="0 0 -3.1319" />
         <parent link="base_link" />
         <child link="Link_1" />
         <axis xyz="0 0 1" />
-        <limit lower="-1.57" upper="1.57" effort="10" velocity="50" />
+        <limit lower="-1.57" upper="1.57" effort="87" velocity="3" />
+        <!-- <dynamics damping="0.5" friction="100"/> -->
     </joint>
 
     <link name="Link_1">
@@ -82,7 +82,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="find://$(find robo_arm)/meshes/Link_1.STL" />
+                <mesh filename="package://robo_arm/meshes/Link_1.STL" />
             </geometry>
             <material name="orange" />
         </visual>
@@ -90,7 +90,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="find://$(find robo_arm)/meshes/Link_1.STL" />
+                <mesh filename="package://robo_arm/meshes/Link_1.STL" />
             </geometry>
         </collision>
 
@@ -98,13 +98,14 @@
 
 
     <!-- JOINT 2 -->
-
     <joint name="Joint_2" type="revolute">
+        <!-- <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-1.55" soft_upper_limit="0.25" /> -->
         <origin xyz="0 0 0.071305" rpy="3.1416 -0.64542 1.5708" />
         <parent link="Link_1" />
         <child link="Link_2" />
         <axis xyz="0 1 0" />
-        <limit lower="-1.65" upper="0.35" effort="10" velocity="50" />
+        <limit lower="-1.65" upper="0.35" effort="87" velocity="3" />
+        <!-- <dynamics damping="0.5" friction="100"/> -->
     </joint>
 
     <link name="Link_2">
@@ -119,7 +120,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="find://$(find robo_arm)/meshes/Link_2.STL" />
+                <mesh filename="package://robo_arm/meshes/Link_2.STL" />
             </geometry>
             <material name="orange" />
         </visual>
@@ -127,7 +128,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="find://$(find robo_arm)/meshes/Link_2.STL" />
+                <mesh filename="package://robo_arm/meshes/Link_2.STL" />
             </geometry>
         </collision>
 
@@ -135,13 +136,14 @@
 
 
     <!-- JOINT 3 -->
-
     <joint name="Joint_3" type="revolute">
+        <!-- <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-3.04" soft_upper_limit="0.04" /> -->
         <origin xyz="0 0 -0.12503" rpy="0 1.5181 -3.1416" />
         <parent link="Link_2" />
         <child link="Link_3" />
         <axis xyz="0 1 0" />
-        <limit lower="-3.14" upper="0.14" effort="10" velocity="50" />
+        <limit lower="-3.14" upper="0.14" effort="87" velocity="3" />
+        <!-- <dynamics damping="0.5" friction="100"/>-->
     </joint>
 
     <link name="Link_3">
@@ -157,7 +159,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="find://$(find robo_arm)/meshes/Link_3.STL" />
+                <mesh filename="package://robo_arm/meshes/Link_3.STL" />
             </geometry>
             <material name="orange" />
         </visual>
@@ -165,7 +167,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="find://$(find robo_arm)/meshes/Link_3.STL" />
+                <mesh filename="package://robo_arm/meshes/Link_3.STL" />
             </geometry>
         </collision>
 
@@ -173,13 +175,14 @@
 
 
     <!-- JOINT 4 -->
-
     <joint name="Joint_4" type="revolute">
+        <!-- <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.2" soft_upper_limit="0.9" /> -->
         <origin xyz="0 0 -0.12503" rpy="-0.88402 0 1.5708" />
         <parent link="Link_3" />
         <child link="Link_4" />
         <axis xyz="1 0 0" />
-        <limit lower="-2.3" upper="1" effort="10" velocity="50" />
+        <limit lower="-2.3" upper="1" effort="87" velocity="3" />
+        <!-- <dynamics damping="0.5" friction="100"/> -->
     </joint>
 
     <link name="Link_4">
@@ -194,27 +197,28 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="find://$(find robo_arm)/meshes/Link_4.STL" />
+                <mesh filename="package://robo_arm/meshes/Link_4.STL" />
             </geometry>
             <material name="orange" />
         </visual>
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="find://$(find robo_arm)/meshes/Link_4.STL" />
+                <mesh filename="package://robo_arm/meshes/Link_4.STL" />
             </geometry>
         </collision>
     </link>
 
 
     <!-- JOINT 5 -->
-
     <joint name="Joint_5" type="revolute">
+        <!-- <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-3.04" soft_upper_limit="-0.1" /> -->
         <origin xyz="-0.0002 0.059362 -0.0026" rpy="-1.6304 0 -1.5708" />
         <parent link="Link_4" />
         <child link="End_Effector" />
         <axis xyz="1 0 0" />
-        <limit lower="-3.14" upper="0" effort="10" velocity="50" />
+        <limit lower="-3.14" upper="0.2" effort="87" velocity="3" />
+        <!-- <dynamics damping="0.5" friction="100"/> -->
     </joint>
 
     <link name="End_Effector">
@@ -229,14 +233,14 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="find://$(find robo_arm)/meshes/End_Effector.STL" />
+                <mesh filename="package://robo_arm/meshes/End_Effector.STL" />
             </geometry>
             <material name="white" />
         </visual>
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="find://$(find robo_arm)/meshes/End_Effector.STL" />
+                <mesh filename="package://robo_arm/meshes/End_Effector.STL" />
             </geometry>
         </collision>
     </link>
