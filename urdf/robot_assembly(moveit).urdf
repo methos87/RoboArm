@@ -213,7 +213,7 @@
     <!-- JOINT 5 -->
     <joint name="Joint_5" type="revolute">
         <!-- <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-3.04" soft_upper_limit="-0.1" /> -->
-        <origin xyz="-0.0002 0.059362 -0.0026" rpy="-1.6304 0 -1.5708" />
+        <origin xyz="-0.0002 0.059362 -0.0026" rpy="-1.6304 0 1.5708" />
         <parent link="Link_4" />
         <child link="End_Effector" />
         <axis xyz="1 0 0" />
